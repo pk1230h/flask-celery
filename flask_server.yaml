@@ -1,8 +1,8 @@
 # namespace
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: flask-backend
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: flask-backend
 ---
 # secret
 apiVersion: v1

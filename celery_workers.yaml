@@ -1,15 +1,15 @@
-# namespace
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: celery-workers
+# # namespace
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   # name: celery-workers
 ---
 # secret
 apiVersion: v1
 kind: Secret
 metadata:
   name: celery-workers-secret
-  namespace: celery-workers
+  # namespace: celery-workers
 type: Opaque
 data:
   CELERY_BROKER_URL: YW1xcDovL2FkbWluOnNlY3JldHBhc3N3b3JkQHJhYmJpdG1xLnJhYmJpdG1xOjU2NzI= #amqp://admin:secretpassword@rabbitmq.rabbitmq:5672
@@ -21,7 +21,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: celery-worker
-  namespace: celery-workers
+  # namespace: celery-workers
 spec:
   replicas: 0
   selector:
