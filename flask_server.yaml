@@ -34,7 +34,8 @@ spec:
     spec:
       containers:
         - name: flask-server
-          image: xasag94215/flask-celery-microservice
+          # image: xasag94215/flask-celery-microservice
+          image: jerryhuang1204/celery-k8s:0.0.1
           envFrom:
             - secretRef:
                 name: flask-secret

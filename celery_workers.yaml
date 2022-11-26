@@ -34,7 +34,8 @@ spec:
     spec:
       containers:
         - name: celery-worker
-          image: xasag94215/flask-celery-microservice
+          # image: xasag94215/flask-celery-microservice
+          image: jerryhuang1204/celery-k8s:0.0.1
           command:
             - "bash"
             - "-c"
