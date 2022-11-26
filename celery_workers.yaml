@@ -12,9 +12,9 @@ metadata:
   namespace: celery-workers
 type: Opaque
 data:
-  CELERY_BROKER_URL: YW1xcDovL2FkbWluOnNlY3JldHBhc3N3b3JkQHJhYmJpdG1xLnJhYmJpdG1xOjU2NzI=
-  CELERY_RESULT_BACKEND: ZGIrcG9zdGdyZXNxbDovL3Rlc3Q6dGVzdEAxMjNAcG9zdGdyZXNxbC5wb3N0Z3Jlczo1NDMyL2ZsYXNrLXNlcnZpY2U=
-  SECRET_KEY: dGVzdA==
+  CELERY_BROKER_URL: YW1xcDovL2FkbWluOnNlY3JldHBhc3N3b3JkQHJhYmJpdG1xLnJhYmJpdG1xOjU2NzI= #amqp://admin:secretpassword@rabbitmq.rabbitmq:5672
+  CELERY_RESULT_BACKEND: ZGIrcG9zdGdyZXNxbDovL3Rlc3Q6dGVzdEAxMjNAcG9zdGdyZXNxbC5wb3N0Z3Jlczo1NDMyL2ZsYXNrLXNlcnZpY2U= # db+postgresql://test:test@123@postgresql.postgres:5432/flask-service
+  SECRET_KEY: dGVzdA== # test
 ---
 # deployment
 apiVersion: apps/v1
@@ -23,7 +23,7 @@ metadata:
   name: celery-worker
   namespace: celery-workers
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       name: celery-worker

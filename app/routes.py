@@ -1,7 +1,7 @@
 from app.app import app
 from flask import request, render_template, jsonify
 from celery.result import AsyncResult
-from app.tasks import *
+from app.tasks import report
 
 
 @app.route('/')
@@ -14,7 +14,8 @@ def health():
 
 @app.route('/report', methods=['POST'])
 def generate_report():
-    async_result = report.delay()
+    # async_result = report.delay()
+    async_result = report()
     return jsonify({"report_id":async_result.id})
 
 

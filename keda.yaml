@@ -6,14 +6,15 @@ metadata:
 spec:
   scaleTargetRef:
     name: celery-worker
-  pollingInterval: 3
-  minReplicaCount: 2
+  pollingInterval: 5
+  cooldownPeriod: 120
+  minReplicaCount: 0
   maxReplicaCount: 30
   triggers:
     - type: rabbitmq
       metadata:
         queueName: celery
-        queueLength: "10"
+        queueLength: "2"
       authenticationRef:
         name: rabbitmq-worker-trigger
 ---
