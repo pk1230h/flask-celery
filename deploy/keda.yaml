@@ -2,14 +2,24 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: celery-worker-scaler
-  # namespace: celery-workers
 spec:
   scaleTargetRef:
     name: celery-worker
-  pollingInterval: 5
+  pollingInterval: 3
   cooldownPeriod: 120
   minReplicaCount: 0
-  maxReplicaCount: 30
+  maxReplicaCount: 100
+  advanced:
+    restoreToOriginalReplicaCount: false
+    horizontalPodAutoscalerConfig:                   # Optional. Section to specify HPA related options
+      behavior:                                      # Optional. Use to modify HPA's scaling behavior
+        scaleDown:
+          stabilizationWindowSeconds: 120
+          policies:
+          - type: Percent
+            value: 100
+            periodSeconds: 15
+
   triggers:
     - type: rabbitmq
       metadata:
@@ -22,7 +32,6 @@ apiVersion: keda.sh/v1alpha1
 kind: TriggerAuthentication
 metadata:
   name: rabbitmq-worker-trigger
-  # namespace: celery-workers
 spec:
   secretTargetRef:
     - parameter: host

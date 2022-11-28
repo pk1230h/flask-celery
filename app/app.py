@@ -9,5 +9,6 @@ app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 celery = Celery(app.import_name,
                 backend=app.config['RESULT_BACKEND'],
-                broker=app.config['CELERY_BROKER_URL'])
+                broker=app.config['CELERY_BROKER_URL'],
+                worker_prefetch_multiplier=1)
 celery.conf.update(app.config)

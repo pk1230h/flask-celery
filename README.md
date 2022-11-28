@@ -1,27 +1,39 @@
 # flask-celery-microservice
+code refer from sample code:[flask-celery-microservice](https://github.com/yolossn/flask-celery-microservice)
 
-Contains code samples for [Scaling Celery workers with RabbitMQ on Kubernetes](https://learnk8s.io/scaling-celery-rabbitmq-kubernetes)
 
-
+https://dev.to/vinothmohan/setting-up-minikube-in-ec2-the-easy-way-22gi
 # aws 
 
 chmod 400 aws-auth.pem
+use-data
 ```
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
-
-chmod +x ./kubectl
-
-sudo mv ./kubectl /usr/local/bin/kubectl
+#!bin/bash
+sudo apt update
+sudo apt upgrade -y
+sudo hostnamectl set-hostname minikube
+sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo apt-get update -y &&  sudo apt-get install -y docker.io
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+snap install kubectl --classic
+sudo apt install conntrack -y
 ```
 
-apt-get install conntrack
 
-minikube start --driver=none
+```
+
+sudo -i
+
+sysctl fs.protected_regular=0 && minikube start --force
+
+
+## install KEDA
+kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.0.0/keda-2.0.0.yaml
 
 
 
-
-## cri-dockerd
+<!-- ## cri-dockerd
 
 ```
 git clone https://github.com/Mirantis/cri-dockerd.git
@@ -50,4 +62,10 @@ VERSION="v1.24.1"
 wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
 sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
 rm -f crictl-$VERSION-linux-amd64.tar.gz
-```
+``` -->
+
+
+##  KubeletNotReady    container runtime network not ready
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+

@@ -13,8 +13,8 @@ metadata:
   namespace: rabbitmq
 type: Opaque
 data:
-  RABBITMQ_DEFAULT_USER: YWRtaW4= #admin
-  RABBITMQ_DEFAULT_PASS: c2VjcmV0cGFzc3dvcmQ=  #secretpassword
+  RABBITMQ_DEFAULT_USER: YWRtaW4=
+  RABBITMQ_DEFAULT_PASS: c2VjcmV0cGFzc3dvcmQ=
 ---
 # deployment
 apiVersion: apps/v1
