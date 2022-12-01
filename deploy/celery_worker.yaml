@@ -5,9 +5,9 @@ metadata:
   name: celery-workers-secret
 type: Opaque
 data:
-  CELERY_BROKER_URL: YW1xcDovL2FkbWluOnNlY3JldHBhc3N3b3JkQHJhYmJpdG1xLnJhYmJpdG1xOjU2NzI= #amqp://admin:secretpassword@rabbitmq.rabbitmq:5672
-  CELERY_RESULT_BACKEND: ZGIrcG9zdGdyZXNxbDovL3Rlc3Q6dGVzdEAxMjNAcG9zdGdyZXNxbC5wb3N0Z3Jlczo1NDMyL2ZsYXNrLXNlcnZpY2U= # db+postgresql://test:test@123@postgresql.postgres:5432/flask-service
-  SECRET_KEY: dGVzdA== # test
+  CELERY_BROKER_URL: YW1xcDovL2FkbWluOnNlY3JldHBhc3N3b3JkQHJhYmJpdG1xLnJhYmJpdG1xOjU2NzI=
+  CELERY_RESULT_BACKEND: ZGIrcG9zdGdyZXNxbDovL3Rlc3Q6dGVzdEAxMjNAcG9zdGdyZXNxbC5wb3N0Z3Jlczo1NDMyL2ZsYXNrLXNlcnZpY2U=
+  SECRET_KEY: dGVzdA==
 ---
 # deployment
 apiVersion: apps/v1
@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: celery-worker
-          image: jerryhuang1204/celery-k8s:0.0.3
+          image: jerryhuang1204/celery-k8s:0.0.4
           command:
             - "bash"
             - "-c"
@@ -37,5 +37,11 @@ spec:
           env:
             - name: SLEEP_TIME
               value: '30'
----
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "80Mi"
+            requests:
+              cpu: "60m"
+              memory: "50Mi"
 

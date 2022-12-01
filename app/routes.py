@@ -8,9 +8,9 @@ from app.tasks import *
 def default():
     return "Welcome to Flask-Cerlery Service"
 
-# @app.route('/health')
-# def health():
-#     return jsonify({"state":"healthy"})
+@app.route('/health')
+def health():
+    return jsonify({"state":"healthy"})
 
 # create a task and send to message queue then wait for available worker to process task
 @app.route('/report', methods=['POST'])

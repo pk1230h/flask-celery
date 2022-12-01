@@ -26,13 +26,21 @@ spec:
     spec:
       containers:
         - name: flask-server
-          image: jerryhuang1204/celery-k8s:0.0.3
+          image: jerryhuang1204/celery-k8s:0.0.4
           envFrom:
             - secretRef:
                 name: flask-secret
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
               name: rest
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+            requests:
+              cpu: "30m"
+              memory: "30Mi"
 ---
 # service
 apiVersion: v1
@@ -40,6 +48,7 @@ kind: Service
 metadata:
   name: flask-server
 spec:
+  type: LoadBalancer
   selector:
     name: flask-server
   ports:
