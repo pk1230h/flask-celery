@@ -1,4 +1,4 @@
-from app.app import celery
+from server.app import celery
 import time
 import os
 SLEEP_TIME = int(os.getenv("SLEEP_TIME", '60'))

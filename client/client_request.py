@@ -1,11 +1,18 @@
 import requests
-import gevent
+
 import datetime
 import argparse
 
+try:
+    import gevent
+except ImportError:
+    print("please install gevent")
+    
+
+
 unit_time_out = 120
 finished_task = 0
-class E2eTest:
+class ClientRequest:
     def __init__(self, url, number_requests):
         self.url = url
         self.number_requests = number_requests
@@ -40,6 +47,6 @@ if __name__ == '__main__':
     parser.add_argument('-n', type=int, default=10,
                         help='number of requests')
     args = parser.parse_args()
-    e2eTest = E2eTest(args.url, args.n)
+    e2eTest = ClientRequest(args.url, args.n)
     e2eTest.run()
     

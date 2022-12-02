@@ -1,7 +1,7 @@
-from app.app import app
+from server.app import app
 from flask import jsonify
 from celery.result import AsyncResult
-from app.tasks import *
+from server.tasks import *
 
 
 @app.route('/')

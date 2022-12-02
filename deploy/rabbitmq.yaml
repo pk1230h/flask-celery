@@ -62,6 +62,20 @@ spec:
     name: rabbitmq
     targetPort: rabbitmq
     protocol: TCP
+
+# management service
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-mgnt
+  namespace: rabbitmq
+  labels:
+    name: rabbitmq
+spec:
+  type: LoadBalancer
+  selector:
+    name: rabbitmq
+  ports:
   - port: 15672
     name: rabbitmq-mgmt
     targetPort: management

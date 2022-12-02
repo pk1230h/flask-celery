@@ -11,8 +11,8 @@ spec:
   maxReplicaCount: 100
   advanced:
     restoreToOriginalReplicaCount: false
-    horizontalPodAutoscalerConfig:                   # Optional. Section to specify HPA related options
-      behavior:                                      # Optional. Use to modify HPA's scaling behavior
+    horizontalPodAutoscalerConfig:
+      behavior:
         scaleDown:
           stabilizationWindowSeconds: 120
           policies:
@@ -24,7 +24,7 @@ spec:
     - type: rabbitmq
       metadata:
         queueName: celery
-        queueLength: "2"
+        queueLength: "1"
       authenticationRef:
         name: rabbitmq-worker-trigger
 ---
