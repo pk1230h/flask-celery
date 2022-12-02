@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: celery-worker
-          image: jerryhuang1204/celery-k8s:0.0.5
+          image: jerryhuang1204/celery-k8s:0.0.6
           command:
             - "bash"
             - "-c"
@@ -41,7 +41,7 @@ spec:
           resources:
             limits:
               cpu: "100m"
-              memory: "80Mi"
+              memory: "100Mi"
             requests:
               cpu: "60m"
               memory: "50Mi"

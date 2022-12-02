@@ -35,18 +35,18 @@ spec:
         name: rabbitmq
     spec:
       containers:
-      - name: rabbitmq
-        image: rabbitmq:3.6.8-management
-        envFrom:
+        - name: rabbitmq
+          image: rabbitmq:3.6.8-management
+          envFrom:
             - secretRef:
                 name: rabbitmq-secret
-        ports:
-        - containerPort: 15672
-          name: management
-        - containerPort: 5672
-          name: rabbitmq
+          ports:
+            - containerPort: 15672
+              name: management
+            - containerPort: 5672
+              name: rabbitmq
 ---
-# service
+# service: for internal kubernetes cluster connenction
 apiVersion: v1
 kind: Service
 metadata:
@@ -58,12 +58,12 @@ spec:
   selector:
     name: rabbitmq
   ports:
-  - port: 5672
-    name: rabbitmq
-    targetPort: rabbitmq
-    protocol: TCP
-
-# management service
+    - port: 5672
+      name: rabbitmq
+      targetPort: rabbitmq
+      protocol: TCP
+---
+# rabbitmq management web interface
 apiVersion: v1
 kind: Service
 metadata:
@@ -76,6 +76,6 @@ spec:
   selector:
     name: rabbitmq
   ports:
-  - port: 15672
-    name: rabbitmq-mgmt
-    targetPort: management
+    - port: 15672
+      name: rabbitmq-mgmt
+      targetPort: management

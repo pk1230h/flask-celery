@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: flask-server
-          image: jerryhuang1204/celery-k8s:0.0.5
+          image: jerryhuang1204/celery-k8s:0.0.6
           envFrom:
             - secretRef:
                 name: flask-secret
@@ -36,8 +36,8 @@ spec:
               name: rest
           resources:
             limits:
-              cpu: "100m"
-              memory: "100Mi"
+              cpu: "1"
+              memory: "500Mi"
             requests:
               cpu: "30m"
               memory: "30Mi"
