@@ -102,10 +102,16 @@ make api call to trigger celery worker process given flask API url and number of
     ./client_setup.sh
     ```
 
-3. get flask server load balancer url and copy 
-   ```
-    kubectl get svc/flask-server
-   ```
+3. get flask server load balancer url and copy
+   
+    AWS:
+    ```shell
+    export loadbalancer=$(kubectl get svc flask-server -o jsonpath='{.status.loadBalancer.ingress[*].hostname}')
+    ```
+    Local
+    ```
+    export loadbalancer=$(kubectl get svc flask-server -o jsonpath='{.status.loadBalancer.ingress[*].ip}')
+    ```
 
 2. trigger api request
     ```shell
